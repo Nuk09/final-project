@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="rus">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/registration/signform.css">
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="jquery.maskedinput.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="all">
+        <img class="imgtop" src="/registration/img/Element 01.svg" alt="">
+        <div class="form-box">
+            <h3 id="bilim">IQ360</h3>
+            <p style="text-align: center; font-size: 13px; color: #5C5C5C; margin: auto;">Select type of registration</p>
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="teach()">Student</button>
+                <button type="button" class="toggle-btn" onclick="student()">Instructor</button>
+            </div>
+            <div class="linktolog">
+                <a class="linktolog" href="./signUp.html">Already have account</a>
+            </div>
+            <div class="social-icons">
+                <img src="fb.png" alt="">
+                <img src="gp.png" alt="">
+                <img src="tw.png" alt="">
+            </div>
+
+            <!--  -->
+            <div action="/registration/email.confirmstudent.html" method="" id="student" class="input-group">
+                <input type="text" class="input-field" id='username_std' placeholder="Full name" required>
+                <input type="email" class="input-field" id='email_std' placeholder="E-mail" required>
+                <input type="text" id="parentName" class="input-field" placeholder="Parent's full name" required>
+                <input type="tel" id="phone_std" name="tel" pattern="+7[0-9]{3}-[0-9]{3}-[0-9]{4}" class="input-field"
+                    placeholder="Parent's phone number" required>
+                <input type="password" class="input-field" id="student_pass" onkeyup="compareStudent();"
+                    placeholder="Password" required>
+                <input type="password" class="input-field" id="student_confirm" onkeyup="compareStudent();"
+                    placeholder="Password confirmation" required>
+                <p id="message"></p>
+                <input id="check" type="checkbox" class="check-box" placeholder="Check" required><span>I accept all agreements</span>
+
+                <button class="submit-btn" id="student_reg">Sign Up</button>
+            </div>
+            <div action="/registration/email.confirm.html" method="get" id="teacher" class="input-group">
+                <input type="text" class="input-field" id="username_tch" placeholder="Full name" required>
+                <input type="email" class="input-field" id="email_tch" placeholder="E-mail" required>
+                <input type="tel" name="tel" id="phone_tch" pattern="+7[0-9]{3}-[0-9]{3}-[0-9]{4}" class="input-field"
+                    placeholder="Phone number" required>
+                <input type="password" class="input-field" id="teahcer_pass" onkeyup="compareTeacher();"
+                    placeholder="Password" required>
+                <input type="password" class="input-field" id="teahcer_confirm" onkeyup="compareTeacher();"
+                    placeholder="Password confirmation" required>
+                <p id="message2"></p>
+                <input id="check2" type="checkbox" class="check-box" placeholder="Check" required><span>I accept all agreements</span>
+
+                <button class="submit-btn" id="teacher_reg">Sign Up</button>
+            </div>
+        </div>
+        <div class="footerimg">
+            <img class="imgf" src="/registration/img/backgroungimg.png" alt="">
+        </div>
+    </div>
+
+    <script>
+        var x = document.getElementById("student");
+        var y = document.getElementById("teacher");
+        var z = document.getElementById("btn");
+
+        function student() {
+            x.style.left = "-400px"
+            y.style.left = "50px"
+            z.style.left = "110px"
+        }
+        function teach() {
+            x.style.left = "50px"
+            y.style.left = "450px"
+            z.style.left = "0"
+        }
+
+        var compareStudent = function () {
+            if (document.getElementById('student_pass').value ==
+                document.getElementById('student_confirm').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Passwords coincide';
+                document.getElementById('student_pass').style.borderBlockColor = 'green';
+                document.getElementById('student_confirm').style.borderBlockColor = 'green';
+                document.getElementById('student_reg').disabled = false;
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Passwords not coincide';
+                document.getElementById('student_pass').style.borderBlockColor = 'red';
+                document.getElementById('student_confirm').style.borderBlockColor = 'red';
+                document.getElementById('student_reg').disabled = true;
+            }
+            if (document.getElementById('student_pass').value == "" || document.getElementById('student_confirm').value == "") {
+                document.getElementById('message').innerHTML = null;
+            }
+        }
+        var compareTeacher = function () {
+            if (document.getElementById('teahcer_pass').value ==
+                document.getElementById('teahcer_confirm').value) {
+                document.getElementById('message2').style.color = 'green';
+                document.getElementById('message2').innerHTML = 'Passwords coincide';
+                document.getElementById('teahcer_pass').style.borderBlockColor = 'green';
+                document.getElementById('teahcer_confirm').style.borderBlockColor = 'green';
+                document.getElementById('teacher_reg').disabled = false;
+
+            } else {
+                document.getElementById('message2').style.color = 'red';
+                document.getElementById('message2').innerHTML = 'Passwords not coincide';
+                document.getElementById('teahcer_pass').style.borderBlockColor = 'red';
+                document.getElementById('teahcer_confirm').style.borderBlockColor = 'red';
+                document.getElementById('teacher_reg').disabled = true;
+            }
+            if (document.getElementById('teahcer_pass').value == "" || document.getElementById('teahcer_confirm').value == "") {
+                document.getElementById('message2').innerHTML = null;
+            }
+        }
+    </script>
+</body>
+
+</html>
